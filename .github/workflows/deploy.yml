@@ -2,7 +2,7 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [claude/website-development-frxoqr]
+    branches: [claude/cake-shop-ordering-website-hsh9pj]
   workflow_dispatch:
 
 permissions:

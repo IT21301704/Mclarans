@@ -1,33 +1,31 @@
 import { Link } from 'react-router-dom'
+import CakeCard from '../components/CakeCard.jsx'
+import { cakes } from '../data/cakes.js'
+import { shop } from '../data/shop.js'
 
-const highlights = [
-  {
-    icon: '⚡',
-    title: 'Fiber Broadband',
-    text: 'Ultra-fast fiber to your home or office with speeds up to 1 Gbps and unlimited data options.',
-  },
-  {
-    icon: '📱',
-    title: 'Mobile Plans',
-    text: 'Flexible prepaid and postpaid mobile plans with nationwide 4G/5G coverage.',
-  },
-  {
-    icon: '🏢',
-    title: 'Enterprise Connectivity',
-    text: 'Dedicated leased lines, SD-WAN, and managed networks built for business-critical uptime.',
-  },
-  {
-    icon: '☁️',
-    title: 'Cloud & Hosted PBX',
-    text: 'Modern cloud telephony and unified communications that scale with your team.',
-  },
-]
+const featured = ['chocolate-fudge', 'birthday-sprinkle', 'red-velvet']
 
-const stats = [
-  { value: '500K+', label: 'Customers Connected' },
-  { value: '99.9%', label: 'Network Uptime' },
-  { value: '24/7', label: 'Customer Support' },
-  { value: '15+', label: 'Years of Service' },
+const steps = [
+  {
+    icon: '🍰',
+    title: 'Pick your cake',
+    text: 'Browse the menu, choose a size, and add your favourites to the cart.',
+  },
+  {
+    icon: '📝',
+    title: 'Place your order',
+    text: 'Tell us your name, pickup or delivery details, and the date you need it.',
+  },
+  {
+    icon: '📲',
+    title: 'We confirm on WhatsApp',
+    text: 'Your order reaches us instantly and we confirm with payment details.',
+  },
+  {
+    icon: '🎉',
+    title: 'Enjoy fresh cake',
+    text: 'Collect your cake or get it delivered — baked fresh for your day.',
+  },
 ]
 
 export default function Home() {
@@ -35,95 +33,97 @@ export default function Home() {
     <>
       <section className="hero">
         <div className="container hero-inner">
-          <div className="hero-content">
-            <span className="eyebrow">Mclarans Telecommunications</span>
+          <div>
+            <span className="eyebrow">Homemade &amp; Baked Fresh</span>
             <h1>
-              Connecting You to <span className="text-gradient">What Matters</span>
+              Delicious cakes,{' '}
+              <span className="text-gradient">ordered in minutes</span>
             </h1>
             <p>
-              Blazing-fast fiber broadband, dependable mobile networks, and
-              enterprise-grade connectivity — all backed by round-the-clock
-              local support.
+              From birthday centrepieces to tea-time butter cake, every Mclarans
+              cake is baked to order with real butter, real chocolate, and a lot
+              of love. Order online and we&apos;ll have it ready for your big day.
             </p>
             <div className="hero-actions">
-              <Link to="/plans" className="btn btn-primary">View Plans</Link>
-              <Link to="/contact" className="btn btn-outline">Talk to Us</Link>
+              <Link to="/menu" className="btn btn-primary">Order a Cake</Link>
+              <Link to="/custom" className="btn btn-light">Design a Custom Cake</Link>
             </div>
           </div>
-          <div className="hero-visual" aria-hidden="true">
-            <div className="signal-ring ring-1" />
-            <div className="signal-ring ring-2" />
-            <div className="signal-ring ring-3" />
-            <div className="signal-core">📡</div>
+          <div className="hero-visual">
+            <span className="hero-cake">🎂</span>
+            <span className="float-treat treat-1">🧁</span>
+            <span className="float-treat treat-2">🍓</span>
+            <span className="float-treat treat-3">🍫</span>
           </div>
         </div>
       </section>
 
-      <section className="section stats-band">
+      <section className="stats-band">
         <div className="container stats-grid">
-          {stats.map(({ value, label }) => (
-            <div className="stat" key={label}>
-              <span className="stat-value">{value}</span>
-              <span className="stat-label">{label}</span>
-            </div>
-          ))}
+          <div>
+            <span className="stat-value">100%</span>
+            <span className="stat-label">Baked to Order</span>
+          </div>
+          <div>
+            <span className="stat-value">9+</span>
+            <span className="stat-label">Signature Cakes</span>
+          </div>
+          <div>
+            <span className="stat-value">2 Days</span>
+            <span className="stat-label">Custom Cake Lead Time</span>
+          </div>
+          <div>
+            <span className="stat-value">★ 5.0</span>
+            <span className="stat-label">Loved by Customers</span>
+          </div>
         </div>
       </section>
 
       <section className="section">
         <div className="container">
           <div className="section-head">
-            <h2>Everything You Need to Stay Connected</h2>
-            <p>
-              From home internet to nationwide enterprise networks, we deliver
-              telecommunications services you can count on.
-            </p>
+            <h2>Customer Favourites</h2>
+            <p>The cakes our customers keep coming back for.</p>
           </div>
-          <div className="card-grid">
-            {highlights.map(({ icon, title, text }) => (
-              <div className="card" key={title}>
-                <div className="card-icon">{icon}</div>
-                <h3>{title}</h3>
-                <p>{text}</p>
-              </div>
-            ))}
+          <div className="cake-grid">
+            {cakes
+              .filter((cake) => featured.includes(cake.id))
+              .map((cake) => (
+                <CakeCard key={cake.id} cake={cake} />
+              ))}
           </div>
           <div className="center-cta">
-            <Link to="/services" className="btn btn-primary">Explore All Services</Link>
+            <Link to="/menu" className="btn btn-outline">See the Full Menu</Link>
           </div>
         </div>
       </section>
 
       <section className="section alt">
-        <div className="container split">
-          <div>
-            <h2>Why Choose Mclarans?</h2>
-            <ul className="check-list">
-              <li>Lightning-fast fiber network with 99.9% guaranteed uptime</li>
-              <li>Transparent pricing — no hidden fees, no surprises</li>
-              <li>Local support teams available 24/7, every day of the year</li>
-              <li>Free installation and professional on-site setup</li>
-              <li>Flexible plans that grow with your home or business</li>
-            </ul>
-            <Link to="/about" className="btn btn-outline">Learn More About Us</Link>
+        <div className="container">
+          <div className="section-head">
+            <h2>How Ordering Works</h2>
+            <p>Four simple steps from craving to cake.</p>
           </div>
-          <div className="promo-card">
-            <span className="promo-tag">Limited Offer</span>
-            <h3>Fiber 300 Mbps</h3>
-            <p className="promo-price">
-              $39<span>/month for the first 6 months</span>
-            </p>
-            <p>Unlimited data · Free router · Free installation</p>
-            <Link to="/plans" className="btn btn-primary">Claim This Deal</Link>
+          <div className="card-grid">
+            {steps.map((step) => (
+              <div className="card" key={step.title}>
+                <div className="card-icon">{step.icon}</div>
+                <h3>{step.title}</h3>
+                <p>{step.text}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
       <section className="section cta-band">
         <div className="container center">
-          <h2>Ready to Get Connected?</h2>
-          <p>Join over 500,000 customers who trust Mclarans every day.</p>
-          <Link to="/contact" className="btn btn-light">Get Started Today</Link>
+          <h2>Planning a celebration?</h2>
+          <p>
+            Tell us your theme, flavours, and date — we&apos;ll bake a custom cake
+            that steals the show. {shop.leadTimeNote}
+          </p>
+          <Link to="/custom" className="btn btn-primary">Request a Custom Cake</Link>
         </div>
       </section>
     </>

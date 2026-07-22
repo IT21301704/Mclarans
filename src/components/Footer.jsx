@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import Logo from './Logo.jsx'
+import { shop } from '../data/shop.js'
 
 export default function Footer() {
   return (
@@ -9,47 +10,49 @@ export default function Footer() {
           <div className="brand">
             <Logo />
             <span className="brand-name">
-              Mclarans<span className="brand-accent"> Telecom</span>
+              Mclarans<span className="brand-accent"> Cakes</span>
             </span>
           </div>
           <p>
-            Reliable fiber, mobile, and enterprise connectivity — keeping homes
-            and businesses connected around the clock.
+            Freshly baked cakes made with love — order online for birthdays,
+            celebrations, or just because you deserve a treat.
           </p>
+        </div>
+
+        <div>
+          <h4>Shop</h4>
+          <ul>
+            <li><Link to="/menu">Cake Menu</Link></li>
+            <li><Link to="/custom">Custom Cakes</Link></li>
+            <li><Link to="/cart">Your Cart</Link></li>
+          </ul>
         </div>
 
         <div>
           <h4>Company</h4>
           <ul>
             <li><Link to="/about">About Us</Link></li>
-            <li><Link to="/services">Services</Link></li>
-            <li><Link to="/plans">Plans &amp; Pricing</Link></li>
             <li><Link to="/contact">Contact</Link></li>
           </ul>
         </div>
 
         <div>
-          <h4>Services</h4>
+          <h4>Get in Touch</h4>
           <ul>
-            <li><Link to="/services">Fiber Broadband</Link></li>
-            <li><Link to="/services">Mobile Plans</Link></li>
-            <li><Link to="/services">Enterprise Solutions</Link></li>
-            <li><Link to="/services">Cloud PBX</Link></li>
-          </ul>
-        </div>
-
-        <div>
-          <h4>Support</h4>
-          <ul>
-            <li><a href="tel:+94112000000">Hotline: +94 11 200 0000</a></li>
-            <li><a href="mailto:support@mclarans.com">support@mclarans.com</a></li>
-            <li>24/7 Customer Care</li>
+            <li>
+              <a href={`https://wa.me/${shop.whatsapp}`} target="_blank" rel="noreferrer">
+                WhatsApp: {shop.whatsappDisplay}
+              </a>
+            </li>
+            <li><a href={`mailto:${shop.email}`}>{shop.email}</a></li>
+            <li>{shop.address}</li>
+            <li>{shop.hours}</li>
           </ul>
         </div>
       </div>
 
       <div className="container footer-bottom">
-        <p>© {new Date().getFullYear()} Mclarans Telecommunications. All rights reserved.</p>
+        <p>© {new Date().getFullYear()} {shop.name}. Baked fresh, always. 🧁</p>
       </div>
     </footer>
   )

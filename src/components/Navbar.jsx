@@ -1,17 +1,19 @@
 import { useState } from 'react'
 import { NavLink, Link } from 'react-router-dom'
 import Logo from './Logo.jsx'
+import { useCart } from '../context/CartContext.jsx'
 
 const links = [
   { to: '/', label: 'Home' },
-  { to: '/services', label: 'Services' },
-  { to: '/plans', label: 'Plans' },
+  { to: '/menu', label: 'Cake Menu' },
+  { to: '/custom', label: 'Custom Cakes' },
   { to: '/about', label: 'About' },
   { to: '/contact', label: 'Contact' },
 ]
 
 export default function Navbar() {
   const [open, setOpen] = useState(false)
+  const { count } = useCart()
 
   return (
     <header className="navbar">
@@ -19,7 +21,7 @@ export default function Navbar() {
         <Link to="/" className="brand" onClick={() => setOpen(false)}>
           <Logo />
           <span className="brand-name">
-            Mclarans<span className="brand-accent"> Telecom</span>
+            Mclarans<span className="brand-accent"> Cakes</span>
           </span>
         </Link>
 
@@ -47,8 +49,13 @@ export default function Navbar() {
               {label}
             </NavLink>
           ))}
-          <Link to="/contact" className="btn btn-primary nav-cta" onClick={() => setOpen(false)}>
-            Get Connected
+          <Link
+            to="/cart"
+            className="btn btn-primary nav-cta cart-link"
+            onClick={() => setOpen(false)}
+          >
+            🛒 Cart
+            {count > 0 && <span className="cart-badge">{count}</span>}
           </Link>
         </nav>
       </div>
